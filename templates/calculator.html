@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">&larr; back</a>
+
+<div class="tool">
+    <h2>Calculator</h2>
+
+    <form method="post">
+        <input type="number" step="any" name="num1" placeholder="First number" required>
+        <input type="number" step="any" name="num2" placeholder="Second number" required>
+
+        <div class="op-buttons">
+            <button type="submit" name="operation" value="add">+</button>
+            <button type="submit" name="operation" value="subtract">&minus;</button>
+            <button type="submit" name="operation" value="multiply">&times;</button>
+            <button type="submit" name="operation" value="divide">&divide;</button>
+        </div>
+    </form>
+
+    {% if result is not none %}
+        <div class="results">
+            <div class="stat-row"><span>Result</span><span class="stat-value">{{ result }}</span></div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

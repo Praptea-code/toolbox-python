@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">&larr; back</a>
+
+<div class="tool">
+    <h2>Number Guessing Game</h2>
+    <p class="subtitle">I'm thinking of a number between 1 and 100</p>
+
+    {% if not won %}
+        <form method="post">
+            <input type="number" name="guess" min="1" max="100" placeholder="Your guess" required autofocus>
+            <button type="submit" class="full-btn">Guess</button>
+        </form>
+    {% endif %}
+
+    {% if feedback %}
+        <p class="feedback" style="color: {{ 'var(--success)' if won else 'var(--muted)' }};">
+            {{ feedback }}
+        </p>
+    {% endif %}
+
+    {% if attempts %}
+        <p class="subtitle">Attempts: {{ attempts }}</p>
+    {% endif %}
+
+    {% if won %}
+        <a class="btn full-btn" style="display:block; text-align:center; text-decoration:none;"
+           href="{{ url_for('guessing_game', new=1) }}">Play again</a>
+    {% endif %}
+</div>
+{% endblock %}

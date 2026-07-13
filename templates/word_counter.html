@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">&larr; back</a>
+
+<div class="tool">
+    <h2>Word Counter</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <label class="dropzone">
+            <input type="file" name="myfile" accept=".txt,text/plain"
+                   onchange="this.closest('form').submit()">
+            <span>Click to choose a file, or drag one here</span>
+        </label>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if result %}
+        <div class="results">
+            <div class="stat-row"><span>File</span><span class="stat-value">{{ result.filename }}</span></div>
+            <div class="stat-row"><span>Words</span><span class="stat-value">{{ result.words }}</span></div>
+            <div class="stat-row"><span>Lines</span><span class="stat-value">{{ result.lines }}</span></div>
+            <div class="stat-row"><span>Characters</span><span class="stat-value">{{ result.chars }}</span></div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

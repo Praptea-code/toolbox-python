@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="back" href="{{ url_for('home') }}">&larr; back</a>
+
+<div class="tool">
+    <h2>To-Do List</h2>
+
+    <form method="post" class="todo-input-row">
+        <input type="hidden" name="action" value="add">
+        <input type="text" name="description" placeholder="Add a task" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul id="todo-items">
+        {% for task in tasks %}
+            <li class="{{ 'done' if task.completed else '' }}">
+                <span class="task-text">{{ task.description }}</span>
+
+                <form method="post">
+                    <input type="hidden" name="action" value="toggle">
+                    <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button type="submit" class="toggle">{{ '↺' if task.completed else '✓' }}</button>
+                </form>
+
+                <form method="post">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button type="submit" class="remove">✕</button>
+                </form>
+            </li>
+        {% else %}
+            <li style="color: var(--muted); border-bottom: none;">No tasks yet</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

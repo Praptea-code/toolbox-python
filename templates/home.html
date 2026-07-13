@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Mini Programs</h1>
+<p class="subtitle">Pick one to get started</p>
+
+<div class="grid">
+    <a class="card" href="{{ url_for('word_counter') }}">
+        <span class="icon">📝</span>
+        <span class="card-title">Word Counter</span>
+        <span class="card-desc">Count words, lines and characters in a text file</span>
+    </a>
+
+    <a class="card" href="{{ url_for('calculator') }}">
+        <span class="icon">🧮</span>
+        <span class="card-title">Calculator</span>
+        <span class="card-desc">Add, subtract, multiply or divide two numbers</span>
+    </a>
+
+    <a class="card" href="{{ url_for('guessing_game') }}">
+        <span class="icon">🎯</span>
+        <span class="card-title">Number Guessing Game</span>
+        <span class="card-desc">Guess a number between 1 and 100</span>
+    </a>
+
+    <a class="card" href="{{ url_for('todo_list') }}">
+        <span class="icon">✅</span>
+        <span class="card-title">To-Do List</span>
+        <span class="card-desc">Add, complete and remove tasks</span>
+    </a>
+</div>
+{% endblock %}
